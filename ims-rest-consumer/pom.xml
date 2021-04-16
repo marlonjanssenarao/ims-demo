@@ -5,28 +5,20 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.4.4</version>
+    <artifactId>ims-demo</artifactId>
+    <groupId>tech.arao</groupId>
+    <version>1.0.0</version>
   </parent>
 
-  <groupId>tech.arao</groupId>
-  <artifactId>ims-demo</artifactId>
+  <artifactId>ims-rest-consumer</artifactId>
   <version>1.0.0</version>
 
-  <packaging>pom</packaging>
-
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <java.version>1.8</java.version>
-  </properties>
-
-  <modules>
-    <module>ims-rest</module>
-    <module>ims-rest-consumer</module>
-  </modules>
-
   <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
@@ -40,8 +32,16 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>
-          <skip>true</skip>
+          <fork>true</fork>
+          <skip>false</skip>
         </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

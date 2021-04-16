@@ -1,4 +1,4 @@
-package tech.arao.ims.rest.model;
+package tech.arao.ims.rest.persistence.model;
 
 public abstract class Feature<T extends Feature> {
 

@@ -91,3 +91,4 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+/ims-rest-consumer/target/

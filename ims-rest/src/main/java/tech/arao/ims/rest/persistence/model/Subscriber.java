@@ -1,19 +1,24 @@
-package tech.arao.ims.rest.model;
+package tech.arao.ims.rest.persistence.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
-@Entity
+@Entity(name = "Subscriber")
+@Table(name = "SUBSCRIBERS")
 public class Subscriber implements Serializable {
 
-    private @Id String phoneNumber;
+    @Id
+    private String phoneNumber;
     private String username;
     private String password;
     private String domain;
     private String status;
-    //private List<Feature> features;
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<StandardFeature> features;
 
 
     public Subscriber(String phoneNumber) {

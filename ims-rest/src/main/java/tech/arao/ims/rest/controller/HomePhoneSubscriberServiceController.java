@@ -4,8 +4,8 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.*;
 import tech.arao.ims.rest.exception.SubscriberNotFoundException;
-import tech.arao.ims.rest.model.Subscriber;
-import tech.arao.ims.rest.repository.SubscriberRepository;
+import tech.arao.ims.rest.persistence.model.Subscriber;
+import tech.arao.ims.rest.persistence.repository.SubscriberRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;

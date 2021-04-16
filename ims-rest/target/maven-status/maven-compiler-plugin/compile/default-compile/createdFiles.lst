@@ -1,0 +1,11 @@
+tech\arao\ims\rest\persistence\repository\SubscriberRepository.class
+tech\arao\ims\rest\ServletInitializer.class
+tech\arao\ims\rest\persistence\model\StandardFeature.class
+tech\arao\ims\rest\persistence\model\Subscriber.class
+tech\arao\ims\rest\persistence\model\CallForwardNoReply.class
+tech\arao\ims\rest\exception\SubscriberNotFoundException.class
+tech\arao\ims\rest\DatabaseConfiguration.class
+tech\arao\ims\rest\persistence\model\Feature.class
+tech\arao\ims\rest\controller\HomePhoneSubscriberServiceController.class
+tech\arao\ims\rest\exception\SubscriberNotFoundAdvice.class
+tech\arao\ims\rest\ImsRestApplication.class
