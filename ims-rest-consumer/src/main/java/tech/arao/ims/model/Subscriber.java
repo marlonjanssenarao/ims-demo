@@ -1,15 +1,17 @@
 package tech.arao.ims.model;
 
-import java.io.Serializable;
-import java.util.Objects;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
-public class Subscriber implements Serializable {
+public class Subscriber {
 
+    @NotBlank(message = "\'Phone Number\' can neither be null, blank nor empty!")
     private String phoneNumber;
     private String username;
     private String password;
     private String domain;
-    private String status;
+    private Status status;
+    @NotNull(message = "\'Feature\' cannot be null!")
     private Feature feature;
 
 
@@ -56,11 +58,11 @@ public class Subscriber implements Serializable {
         return this;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public Subscriber setStatus(String status) {
+    public Subscriber setStatus(Status status) {
         this.status = status;
         return this;
     }
@@ -70,38 +72,7 @@ public class Subscriber implements Serializable {
     }
 
     public Subscriber setFeature(Feature feature) {
-        if (feature != null) this.feature = feature;
+        this.feature = feature;
         return this;
-    }
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Subscriber)) return false;
-        Subscriber that = (Subscriber) o;
-        return phoneNumber.equals(that.phoneNumber) &&
-                username.equals(that.username) &&
-                password.equals(that.password) &&
-                domain.equals(that.domain) &&
-                status.equals(that.status) &&
-                feature.equals(that.feature);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(phoneNumber, username, password, domain, status, feature);
-    }
-
-    @Override
-    public String toString() {
-        return "Subscriber{" +
-                "phoneNumber='" + phoneNumber + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", domain='" + domain + '\'' +
-                ", status='" + status + '\'' +
-                ", feature=" + feature +
-                '}';
     }
 }

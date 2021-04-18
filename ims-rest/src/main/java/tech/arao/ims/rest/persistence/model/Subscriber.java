@@ -15,8 +15,8 @@ public class Subscriber implements Serializable {
     private String domain;
     private String status;
     @OneToMany(
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
     )
     private List<StandardFeature> features;
 

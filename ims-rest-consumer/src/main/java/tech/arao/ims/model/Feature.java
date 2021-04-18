@@ -1,43 +1,20 @@
 package tech.arao.ims.model;
 
-import java.io.Serializable;
-import java.util.Objects;
+public abstract class Feature<T extends Feature> {
 
-public class Feature implements Serializable {
-
-    private CallForwardNoReply callForwardNoReply;
+    private boolean provisioned;
 
 
-    public Feature() {  }
-
-
-    public CallForwardNoReply getCallForwardNoReply() {
-        return callForwardNoReply;
-    }
-
-    public Feature setCallForwardNoReply(CallForwardNoReply cfnr) {
-        this.callForwardNoReply = cfnr;
-        return this;
+    protected Feature(boolean isProvisioned) {
+        provisioned = isProvisioned;
     }
 
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Feature)) return false;
-        Feature feature = (Feature) o;
-        return Objects.equals(callForwardNoReply, feature.callForwardNoReply);
+    public boolean isProvisioned() {
+        return provisioned;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(callForwardNoReply);
-    }
-
-    @Override
-    public String toString() {
-        return "Feature{" +
-                "callForwardNoReply=" + callForwardNoReply +
-                '}';
+    public void setProvisioned(boolean provisioned) {
+        this.provisioned = provisioned;
     }
 }

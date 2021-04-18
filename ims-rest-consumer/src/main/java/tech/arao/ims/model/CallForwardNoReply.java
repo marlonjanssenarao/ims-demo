@@ -1,18 +1,22 @@
 package tech.arao.ims.model;
 
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CallForwardNoReply implements Serializable {
+import javax.validation.constraints.NotBlank;
 
-    private boolean provisioned;
+
+public class CallForwardNoReply extends Feature {
+
+    @NotBlank(message = "\'Destination\' must neither be null, empty nor blank!")
     private String destination;
 
 
-    public CallForwardNoReply() {  }
-
-    public CallForwardNoReply(boolean isProvisioned, String destination) {
-        this.setProvisioned(isProvisioned);
-        this.destination = destination;
+    @JsonCreator
+    public CallForwardNoReply(@JsonProperty("provisioned") boolean isProvisioned,
+                              @JsonProperty("destination") CharSequence destination) {
+        super(isProvisioned);
+        this.destination = destination.toString();
     }
 
 
@@ -20,17 +24,8 @@ public class CallForwardNoReply implements Serializable {
         return destination;
     }
 
-    public CallForwardNoReply setDestination(String destination) {
-        this.destination = destination;
-        return this;
-    }
-
-    public boolean isProvisioned() {
-        return provisioned;
-    }
-
-    public CallForwardNoReply setProvisioned(boolean provisioned) {
-        this.provisioned = provisioned;
+    public CallForwardNoReply setDestination(CharSequence destination) {
+        this.destination = destination.toString();
         return this;
     }
 }

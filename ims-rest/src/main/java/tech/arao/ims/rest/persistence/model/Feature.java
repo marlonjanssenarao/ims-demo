@@ -5,7 +5,9 @@ public abstract class Feature<T extends Feature> {
     private boolean provisioned;
 
 
-    public Feature() {  }
+    protected Feature(boolean isProvisioned) {
+        provisioned = isProvisioned;
+    }
 
 
     public boolean isProvisioned() {

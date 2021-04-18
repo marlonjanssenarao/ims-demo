@@ -5,10 +5,8 @@ public class CallForwardNoReply extends Feature {
     private String destination;
 
 
-    public CallForwardNoReply() {  }
-
     public CallForwardNoReply(boolean isProvisioned, String destination) {
-        this.setProvisioned(isProvisioned);
+        super(isProvisioned);
         this.destination = destination;
     }
 
