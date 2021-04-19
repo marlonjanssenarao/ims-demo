@@ -5,8 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import tech.arao.ims.rest.persistence.model.StandardFeature;
+import tech.arao.ims.rest.persistence.model.CallForwardNoReply;
+import tech.arao.ims.rest.persistence.model.Feature;
+import tech.arao.ims.rest.persistence.model.Status;
 import tech.arao.ims.rest.persistence.model.Subscriber;
+import tech.arao.ims.rest.persistence.repository.FeatureRepository;
 import tech.arao.ims.rest.persistence.repository.SubscriberRepository;
 
 import java.util.ArrayList;
@@ -19,26 +22,44 @@ public class DatabaseConfiguration {
 
 
     @Bean
-    CommandLineRunner initDatabase(SubscriberRepository repository) {
+    CommandLineRunner initSubscriber(SubscriberRepository repository) {
         return args -> {
-            List<StandardFeature> features = new ArrayList<>(1);
+            LOGGER.info("PRELOADING Subscribers");
 
-            features.add(new StandardFeature(true, "tel:+18675182800"));
-            LOGGER.info("Preloading " + repository.save(new Subscriber("18675181010")
-                                                                .setUsername("16045906403")
-                                                                .setPassword("p@ssw0rd!")
-                                                                .setDomain("ims.mnc660.mcc302.3gppnetwork.org")
-                                                                .setStatus("ACTIVE")
-                                                                //.setFeatures(features)
-                                                       ));
-            features.add(new StandardFeature(true, "tel:+18675182777"));
-            LOGGER.info("Preloading " + repository.save(new Subscriber("18675181021")
-                                                                .setUsername("16045906414")
-                                                                .setPassword("p@ssw0rd!")
-                                                                .setDomain("ims.mnc660.mcc302.3gppnetwork.org")
-                                                                .setStatus("ACTIVE")
-                                                                //.setFeatures(features)
-                                                       ));
+            LOGGER.info("Preloading Subscriber #1 >>> " +
+                    repository.save(new Subscriber("18675181010")
+                            .setUsername("16045906403")
+                            .setPassword("p@ssw0rd!")
+                            .setDomain("ims.mnc660.mcc302.3gppnetwork.org")
+                            .setStatus(Status.ACTIVE)));
+            LOGGER.info("Preloading Subscriber #2 >>> " +
+                    repository.save(new Subscriber("18675181021")
+                            .setUsername("16045906414")
+                            .setPassword("p@ssw0rd!")
+                            .setDomain("ims.mnc660.mcc302.3gppnetwork.org")
+                            .setStatus(Status.ACTIVE)));
+        };
+    }
+
+    @Bean
+    CommandLineRunner initFeatures(FeatureRepository repository) {
+        return args -> {
+            LOGGER.info("PRELOADING Subscribers\' CallForwardNoReply");
+
+            LOGGER.info("Preloading CallForwardNoReply #1 >>> " +
+                    repository.save(new CallForwardNoReply(new Subscriber("18675181010")
+                                                                   .setUsername("16045906403")
+                                                                   .setPassword("p@ssw0rd!")
+                                                                   .setDomain("ims.mnc660.mcc302.3gppnetwork.org")
+                                                                   .setStatus(Status.ACTIVE),
+                                                  "tel:+18675182800")));
+            LOGGER.info("Preloading CallForwardNoReply #2 >>> " +
+                    repository.save(new CallForwardNoReply(new Subscriber("18675181021")
+                                                                   .setUsername("16045906414")
+                                                                   .setPassword("p@ssw0rd!")
+                                                                   .setDomain("ims.mnc660.mcc302.3gppnetwork.org")
+                                                                   .setStatus(Status.ACTIVE),
+                                                 "tel:+18675182800")));
         };
     }
 }

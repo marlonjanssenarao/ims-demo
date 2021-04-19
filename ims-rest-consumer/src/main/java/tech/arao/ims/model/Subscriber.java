@@ -2,6 +2,7 @@ package tech.arao.ims.model;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 public class Subscriber {
 
@@ -74,5 +75,19 @@ public class Subscriber {
     public Subscriber setFeature(Feature feature) {
         this.feature = feature;
         return this;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Subscriber)) return false;
+        Subscriber that = (Subscriber) o;
+        return phoneNumber.equals(that.phoneNumber) && username.equals(that.username) && password.equals(that.password) && domain.equals(that.domain) && status == that.status && feature.equals(that.feature);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(phoneNumber, username, password, domain, status, feature);
     }
 }

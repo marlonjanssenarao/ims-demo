@@ -2,7 +2,7 @@ package tech.arao.ims.rest.persistence.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
+import java.util.Objects;
 
 @Entity(name = "Subscriber")
 @Table(name = "SUBSCRIBERS")
@@ -13,19 +13,14 @@ public class Subscriber implements Serializable {
     private String username;
     private String password;
     private String domain;
-    private String status;
-    @OneToMany(
-        cascade = CascadeType.ALL,
-        orphanRemoval = true
-    )
-    private List<StandardFeature> features;
+    private Status status;
 
+
+    public Subscriber() {  }
 
     public Subscriber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
-    public Subscriber() {  }
 
 
     public String getPhoneNumber() {
@@ -64,21 +59,43 @@ public class Subscriber implements Serializable {
         return this;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public Subscriber setStatus(String status) {
+    public Subscriber setStatus(Status status) {
         this.status = status;
         return this;
     }
 
-    /*public List<Feature> getFeatures() {
-        return features;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Subscriber)) return false;
+
+        Subscriber that = (Subscriber) o;
+
+        return phoneNumber.equals(that.phoneNumber) &&
+                username.equals(that.username) &&
+                password.equals(that.password) &&
+                domain.equals(that.domain) &&
+                status == that.status;
     }
 
-    public Subscriber setFeatures(List<Feature> features) {
-        if (features != null) this.features = features;
-        return this;
-    }*/
+    @Override
+    public int hashCode() {
+        return Objects.hash(phoneNumber, username, password, domain, status);
+    }
+
+    @Override
+    public String toString() {
+        return "Subscriber{" +
+                "phoneNumber=\"" + phoneNumber + '\"' +
+                ", username=\"" + username + '\"' +
+                ", password=\"" + password + '\"' +
+                ", domain=\"" + domain + '\"' +
+                ", status=" + status +
+                '}';
+    }
 }
