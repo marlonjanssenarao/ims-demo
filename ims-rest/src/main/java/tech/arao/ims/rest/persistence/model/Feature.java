@@ -1,6 +1,7 @@
 package tech.arao.ims.rest.persistence.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity(name = "Feature")
 @Table(name = "FEATURE")
@@ -17,6 +18,7 @@ public abstract class Feature<F extends Feature> {
     private Long id;
     private boolean provisioned;
     @ManyToOne(fetch = FetchType.LAZY)
+    @NotNull(message = "\'Subscriber\' cannot be null.")
     private Subscriber subscriber;
 
 

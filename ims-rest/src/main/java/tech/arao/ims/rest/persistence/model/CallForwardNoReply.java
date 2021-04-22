@@ -3,12 +3,14 @@ package tech.arao.ims.rest.persistence.model;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity(name = "CallForwardNoReply")
 @Table(name = "CALL_FORWARD_NO_REPLY")
 @DiscriminatorValue("1")
 public class CallForwardNoReply extends Feature {
 
+    @NotBlank(message = "\'Destination\' can neither be null, empty, nor blank.")
     private String destination;
 
 

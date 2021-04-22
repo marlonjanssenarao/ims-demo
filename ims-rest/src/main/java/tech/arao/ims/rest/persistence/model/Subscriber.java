@@ -1,6 +1,10 @@
 package tech.arao.ims.rest.persistence.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -9,10 +13,15 @@ import java.util.Objects;
 public class Subscriber implements Serializable {
 
     @Id
+    @NotBlank(message = "\'Phone Number\'can netiher be null, empty nor blank.")
     private String phoneNumber;
+    @NotBlank(message = "\'Usernmae\'can netiher be null, empty nor blank.")
     private String username;
+    @NotBlank(message = "\'Password\'can netiher be null, empty nor blank.")
     private String password;
+    @NotBlank(message = "\'Domain\'can netiher be null, empty nor blank.")
     private String domain;
+    @NotNull(message = "\'Status\' cannot be null!")
     private Status status;
 
 
